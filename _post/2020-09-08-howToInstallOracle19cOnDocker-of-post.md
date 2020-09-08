@@ -1,9 +1,8 @@
 ---
 title: "도커에 오라클 19c 설치하기"
 date: 2020-09-08 21:30:00 -0000
-categories: 도커
+categories: Docker
 ---
-
 오라클 19c 도커 설치 관련...
 
 * 주의 사항 
