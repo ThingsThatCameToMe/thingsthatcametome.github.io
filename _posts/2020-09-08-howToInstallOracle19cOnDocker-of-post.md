@@ -32,7 +32,7 @@ categories: 도커
   - dockerfiles/<version>/ 경로에 넣는다.
   - 이것저것 많아서 뭘 받아야 할지 모르겠으면 클론한 저장소의 버전 디렉토리 내부의 checksum파일을 열어서 받아야할 파일명을 확인해본다.
 3. docker build 자동화 파일 실행
- - buildDockerImage.sh 스크립트를 실행하는데 설치할 버전을 -v옵션으로 넣어주고 -s, -e, -x 로 이미지화하는 제품 형태도 정해 준다.
+ - buildDockerImage.sh 스크립트를 실행하는데 설치할 버전을 -v옵션으로 넣어주고 -e, -s, -x 중 하나를 이미지화하는 제품 형태도 정해 준다.
  - sudo ./dockerfiles/buildDockerImage.sh -v 19.3.0 -s
 4. 내부 도커허브에 올리거나 이미지를 tar파일로 추출한다. (생성한 위치에서 바로 사용한다면 아래의 작업은 필요 없음.)
  - 허브가 없어서 허브에 올리는건 나중에..
