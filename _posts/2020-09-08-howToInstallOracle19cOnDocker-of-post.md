@@ -64,18 +64,18 @@ Oracle 19c를 도커로 설치하기
  - ```sudo systemctl enable --now docker```(요거로 일단 도커 자체는 기동 되도록..)
  - ```cd /etc/systemd/system```
  - ```sudo vi [설정한 서비스].service``` 아래 내용 입력   
-> ```
-[Unit]
-Wants=docker.service
-After=docker.service
- 
-[Service]
-RemainAfterExit=yes
-ExecStart=/usr/bin/docker start [실행할 docker container 이름]
-ExecStop=/usr/bin/docker stop [실행할 docker container 이름]
- 
-[Install]
-WantedBy=multi-user.target
+```
+[Unit]   
+Wants=docker.service   
+After=docker.service   
+    
+[Service]   
+RemainAfterExit=yes   
+ExecStart=/usr/bin/docker start [실행할 docker container 이름]   
+ExecStop=/usr/bin/docker stop [실행할 docker container 이름]   
+    
+[Install]   
+WantedBy=multi-user.target   
 ```
  - 서비스 시작 : ```systemctl start [설정한 서비스]```
  - 서비스 활성화 : ```systemctl enable [설정한 서비스]```
