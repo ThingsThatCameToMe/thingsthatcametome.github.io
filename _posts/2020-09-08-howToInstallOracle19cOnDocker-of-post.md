@@ -52,8 +52,7 @@ Oracle 19c를 도커로 설치하기
  - 이미지 로드 : ```sudo docker load -i oracle_database_19_3_0_se2.tar``` 
 ## 1. 도커 실행
  - 데이터 저장 경로 별도 준비 (ex. mkdir -p ~/OracleData/19c/oradata)
- - 
- ```sudo doocker run --name oracledb-19c \   
+ -  ```sudo doocker run --name oracledb-19c \   
   -p 1521:1521 -p 5500:5500 -e ORACLE_PWD=1 -e ORACLE_EDITION=standard \   
   -v ~/OracleData/19c/oradata:/opt/oracle/oradata oracle/database:19.3.0-se2   
   ```
