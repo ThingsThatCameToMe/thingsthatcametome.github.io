@@ -31,14 +31,14 @@ Oracle 19c를 도커로 설치하기
 # 이미지화하기 
 ## 1. clone한 프로젝트에서 아래 경로로 이동.
   - 오라클에 대해 잘 모르기 때문에 하나의 인스턴스만 구성하는것을 목표로함.
-  - ```cd docker-images/OracleDatabase/SingleInstance/dockerfiles```
+  - ```cd docker-images/OracleDatabase/SingleInstance/dockerfiles```   
 ## 2. 해당 경로의 버전 디렉토리 내부에 오라클 설치파일을 압축을 풀지 않고 넣는다.
   - dockerfiles/<version>/ 경로에 넣는다.
-  - 이것저것 많아서 뭘 받아야 할지 모르겠으면 클론한 저장소의 버전 디렉토리 내부의 checksum파일을 열어서 받아야할 파일명을 확인해본다.
+  - 이것저것 많아서 뭘 받아야 할지 모르겠으면 클론한 저장소의 버전 디렉토리 내부의 checksum파일을 열어서 받아야할 파일명을 확인해본다.   
 ## 3. docker build 자동화 파일 실행
  - buildDockerImage.sh 스크립트를 실행하는데 설치할 버전을 -v옵션으로 넣어주고 -e, -s, -x 중 하나를 이미지화하는 제품 형태도 정해 준다.
  - 작성자는 Standard Edition으로 설치하기때문에 -s 옵션 사용
- - ```sudo ./dockerfiles/buildDockerImage.sh -v 19.3.0 -s```
+ - ```sudo ./dockerfiles/buildDockerImage.sh -v 19.3.0 -s```   
 ## 4. 내부 도커허브에 올리거나 이미지를 tar파일로 추출한다. (생성한 위치에서 바로 사용한다면 아래의 작업은 필요 없음.)
  - 허브가 없어서 허브에 올리는건 나중에..
  - 이미지 확인 : ```sudo docker images```
