@@ -16,14 +16,14 @@ Oracle 19c를 도커로 설치하기
 ## 작업 PC에 Docker 환경 구성
   - 각 환경 구성 방법은 공식 홈페이지보다 인터넷에서 검색하는것이 더 정확함..    
   - centos8, ubuntu 20.04 둘다 인터넷 검색해서 설치한게 맞았음..   
-  - [ubuntu 20.04][https://linuxhint.com/install_configure_docker_ubuntu/]   
-  - [centos8][https://linuxconfig.org/how-to-install-docker-in-rhel-8#h3-1-1-install-a-specific-version-of-docker-ce]
+  - [ubuntu 20.04](https://linuxhint.com/install_configure_docker_ubuntu/)   
+  - [centos8](https://linuxconfig.org/how-to-install-docker-in-rhel-8#h3-1-1-install-a-specific-version-of-docker-ce)
 ## 작업 PC에 git 환경 구성
   - centos 8 : ```sudo yum install git```
   - ubuntu 20.04 : ```sudo apt install git```
 ## 오라클 설치 파일 다운로드
   - 아래 경로에서 받으면 되는데 오라클 계정이 있어야함.
-  - [오라클 다운로드][https://www.oracle.com/database/technologies/oracle-database-software-downloads.html]
+  - [오라클 다운로드](https://www.oracle.com/database/technologies/oracle-database-software-downloads.html)
 ## 도커 이미지 생성 프로젝트 클론
   - 특정집단인거 같은데 오라클이 도커허브에 이미지 못올리게 하니까 이미지 생성하는 걸 자동화 해버림..
   - ```git clone https://github.com/oracle/docker-images```
@@ -53,11 +53,13 @@ Oracle 19c를 도커로 설치하기
  - 이미지 로드 : ```sudo docker load -i oracle_database_19_3_0_se2.tar``` 
 ## 1. 도커 실행
  - 데이터 저장 경로 별도 준비 (ex. mkdir -p ~/OracleData/19c/oradata   
+    
  ```
   sudo doocker run --name oracledb-19c \   
   -p 1521:1521 -p 5500:5500 -e ORACLE_PWD=1 -e ORACLE_EDITION=standard \   
   -v ~/OracleData/19c/oradata:/opt/oracle/oradata oracle/database:19.3.0-se2   
   ```
+     
 ## 2. 접속 
  - 방화벽 따로 관리할거 아니면 내려둘것.. 
  - ```sudo systemctl disable --now firewalld``` (사실 관리하는게 맞음.. 넘 어려워 ㅠㅠ)
