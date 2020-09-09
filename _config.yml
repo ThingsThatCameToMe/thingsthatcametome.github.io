@@ -279,4 +279,4 @@ defaults:
       share: true
       related: true
       show_date : true
-      words_per_minute: 250
+      words_per_minute: 150
