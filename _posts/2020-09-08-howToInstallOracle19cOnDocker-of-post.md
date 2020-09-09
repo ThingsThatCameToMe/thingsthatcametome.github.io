@@ -11,23 +11,23 @@ Oracle 19c를 도커로 설치하기
 도커 이미지 빌드 작업은 가상화가 아닌 PC에서 진행할것..   
 이유는 정확히 모르겠지만 네트워크 이슈로 인해서 정상적으로 이미지 생성이 안됨...    
 아래의 경우도 PC에서 이미지 생성 작업 완료 후 가상화 서버에 도커 이미지를 올려서 진행하였음..   
-
+   
 # 준비 작업 
 ## 작업 PC에 Docker 환경 구성
   - 각 환경 구성 방법은 공식 홈페이지보다 인터넷에서 검색하는것이 더 정확함..    
   - centos8, ubuntu 20.04 둘다 인터넷 검색해서 설치한게 맞았음..   
-  - ubuntu 참고 : https://linuxhint.com/install_configure_docker_ubuntu/   
-  - centos8 참고 : 나중에 다시 설치하면 찾아둘 것...   
+  - [ubuntu 20.04][https://linuxhint.com/install_configure_docker_ubuntu/]   
+  - [centos8][https://linuxconfig.org/how-to-install-docker-in-rhel-8#h3-1-1-install-a-specific-version-of-docker-ce]
 ## 작업 PC에 git 환경 구성
   - centos 8 : ```sudo yum install git```
   - ubuntu 20.04 : ```sudo apt install git```
 ## 오라클 설치 파일 다운로드
   - 아래 경로에서 받으면 되는데 오라클 계정이 있어야함.
-  - https://www.oracle.com/database/technologies/oracle-database-software-downloads.html
+  - [오라클 다운로드][https://www.oracle.com/database/technologies/oracle-database-software-downloads.html]
 ## 도커 이미지 생성 프로젝트 클론
   - 특정집단인거 같은데 오라클이 도커허브에 이미지 못올리게 하니까 이미지 생성하는 걸 자동화 해버림..
   - ```git clone https://github.com/oracle/docker-images```
-
+   
 # 이미지화하기 
 ## 1. clone한 프로젝트에서 아래 경로로 이동.
   - 오라클에 대해 잘 모르기 때문에 하나의 인스턴스만 구성하는것을 목표로함.
@@ -45,7 +45,7 @@ Oracle 19c를 도커로 설치하기
  - 이미지 추출 : ```sudo docker save -o oracle_database_19_3_0_se2.tar oracle/database:19.3.0-se2```
  - 파라미터는 -o 옵션으로 추출되는 파일명을 정해주고 대상 이미지 이름을 넣어준다.
  - 추출한 파일의 권한을 변경 : ```sudo chown wschoi:wschoi oracle_database_19_3_0_se2.tar```
-
+   
 # 컨테이너화하기
 ## 0. 이미지를 로드한다.(생성한 위치에서 바로 사용하는 중이라면 아래의 작업은 필요 없음.)
  - 가상화 서버에도 docker환경이 구성되어 있어야한다.
@@ -66,7 +66,7 @@ Oracle 19c를 도커로 설치하기
 ## 3. 가상화 또는 host OS 재기동해도 도커의 오라클 기동되도록 설정
  - ```sudo systemctl enable --now docker```(요거로 일단 도커 자체는 기동 되도록..)
  - ```cd /etc/systemd/system```
- - ``` sudo vi [설정한 서비스].service ```     
+ - ``` sudo vi [설정한 서비스].service ```  아래 내용 추가   
 
 ```
 [Unit]   
@@ -84,7 +84,9 @@ WantedBy=multi-user.target
 
  - 서비스 시작 : ```systemctl start [설정한 서비스]```
  - 서비스 활성화 : ```systemctl enable [설정한 서비스]```
-
+   
 # 참고
  - https://github.com/oracle/docker-images/blob/master/OracleDatabase/SingleInstance/README.md
  - https://help.iwinv.kr/manual/read.html?idx=572
+ - https://linuxhint.com/install_configure_docker_ubuntu/
+ - https://linuxconfig.org/how-to-install-docker-in-rhel-8#h3-1-1-install-a-specific-version-of-docker-ce
