@@ -14,9 +14,10 @@ Oracle 19c를 도커로 설치하기
 
 # 준비 작업 
 ## 작업 PC에 Docker 환경 구성
-  - 각 환경 구성 방법은 공식 홈페이지보다 인터넷에서 검색하는것이 더 정확함.. centos8, ubuntu 20.04 둘다 인터넷 검색해서 설치한게 맞았음..
-  - ubuntu 참고 : https://linuxhint.com/install_configure_docker_ubuntu/
-  - centos8 참고 : 나중에 다시 설치하면 찾아둘 것...
+  - 각 환경 구성 방법은 공식 홈페이지보다 인터넷에서 검색하는것이 더 정확함..    
+  - centos8, ubuntu 20.04 둘다 인터넷 검색해서 설치한게 맞았음..   
+  - ubuntu 참고 : https://linuxhint.com/install_configure_docker_ubuntu/   
+  - centos8 참고 : 나중에 다시 설치하면 찾아둘 것...   
 ## 작업 PC에 git 환경 구성
   - centos 8 : ```sudo yum install git```
   - ubuntu 20.04 : ```sudo apt install git```
@@ -42,7 +43,7 @@ Oracle 19c를 도커로 설치하기
  - 허브가 없어서 허브에 올리는건 나중에..
  - 이미지 확인 : ```sudo docker images```
  - 이미지 추출 : ```sudo docker save -o oracle_database_19_3_0_se2.tar oracle/database:19.3.0-se2```
- - 파라미터는 -o옵션으로 추출되는 파일명을 정해주고 대상 이미지 이름을 넣어준다.
+ - 파라미터는 -o 옵션으로 추출되는 파일명을 정해주고 대상 이미지 이름을 넣어준다.
  - 추출한 파일의 권한을 변경 : ```sudo chown wschoi:wschoi oracle_database_19_3_0_se2.tar```
 
 # 컨테이너화하기
@@ -59,13 +60,14 @@ Oracle 19c를 도커로 설치하기
   ```
 ## 2. 접속 
  - 방화벽 따로 관리할거 아니면 내려둘것.. 
- - ```sudo systemctl disable --now firewalld```(사실 관리하는게 맞음.. 넘 어려워 ㅠㅠ)
+ - ```sudo systemctl disable --now firewalld``` (사실 관리하는게 맞음.. 넘 어려워 ㅠㅠ)
  - https://localhost:5500/em/ 자원관리? 같은 화면이 뜸. 로그인은 sys/1로 가능..(위에대로 생성했다면..)
  - sudo docker exec -it oracledb-19c sqlplus sys/1@//localhost:1521/ORCLCDB as sysdba
 ## 3. 가상화 또는 host OS 재기동해도 도커의 오라클 기동되도록 설정
  - ```sudo systemctl enable --now docker```(요거로 일단 도커 자체는 기동 되도록..)
  - ```cd /etc/systemd/system```
- - ```sudo vi [설정한 서비스].service``` 아래 내용 입력   
+ - ``` sudo vi [설정한 서비스].service ```     
+
 ```
 [Unit]   
 Wants=docker.service   
@@ -79,6 +81,7 @@ ExecStop=/usr/bin/docker stop [실행할 docker container 이름]
 [Install]   
 WantedBy=multi-user.target   
 ```
+
  - 서비스 시작 : ```systemctl start [설정한 서비스]```
  - 서비스 활성화 : ```systemctl enable [설정한 서비스]```
 
